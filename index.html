@@ -1,67 +1,325 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #434343; -webkit-text-stroke: #434343}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #434343; -webkit-text-stroke: #434343; min-height: 13.0px}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #434343; -webkit-text-stroke: #434343}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #0e0e0e; -webkit-text-stroke: #0e0e0e}
-    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px 'Helvetica Neue'; color: #434343; -webkit-text-stroke: #434343}
-    p.p7 {margin: 0.0px 0.0px 10.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #0e0e0e; -webkit-text-stroke: #0e0e0e}
-    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.5px 'Helvetica Neue'; color: #0e0e0e; -webkit-text-stroke: #0e0e0e}
-    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.5px 'Helvetica Neue'; color: #434343; -webkit-text-stroke: #434343}
-    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; color: #0e0e0e; -webkit-text-stroke: #0e0e0e}
-    p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.5px 'Helvetica Neue'; color: #434343; -webkit-text-stroke: #434343}
-    p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.5px 'Helvetica Neue'; color: #0e0e0e; -webkit-text-stroke: #0e0e0e}
-    span.s1 {font-kerning: none}
-    span.s2 {font-kerning: none; color: #434343; -webkit-text-stroke: 0px #434343}
-    span.s3 {font-kerning: none; color: #0e0e0e; -webkit-text-stroke: 0px #0e0e0e}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Etienne Cousin</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #e8e8e8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 80px;
+      font-family: "Menlo", "Monaco", "Courier New", monospace;
+    }
+
+    /* ── TEXTEDIT WINDOW ── */
+    .window {
+      width: 100%;
+      max-width: 720px;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow:
+        0 1px 1px rgba(0,0,0,0.08),
+        0 4px 12px rgba(0,0,0,0.12),
+        0 20px 40px rgba(0,0,0,0.10);
+      overflow: hidden;
+    }
+
+    /* ── TITLE BAR ── */
+    .titlebar {
+      background: linear-gradient(to bottom, #f0f0f0 0%, #e0e0e0 100%);
+      border-bottom: 1px solid #c0c0c0;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      user-select: none;
+    }
+    .traffic-lights { display: flex; gap: 6px; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot.red    { background: #ff5f57; border: 0.5px solid #e0443e; }
+    .dot.yellow { background: #ffbd2e; border: 0.5px solid #dea123; }
+    .dot.green  { background: #28c840; border: 0.5px solid #1aab29; }
+    .titlebar-name {
+      flex: 1;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 500;
+      color: #3a3a3a;
+      letter-spacing: -0.01em;
+      margin-right: 54px;
+    }
+
+    /* ── RULER ── */
+    .ruler {
+      background: #f7f7f7;
+      border-bottom: 1px solid #d5d5d5;
+      height: 22px;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 72px 3px;
+      gap: 0;
+    }
+    .ruler-inner {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .ruler-mark {
+      font-size: 9px;
+      color: #bbb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px;
+    }
+    .ruler-tick { width: 1px; height: 5px; background: #ccc; }
+
+    /* ── DOCUMENT BODY ── */
+    .doc {
+      padding: 60px 72px 80px;
+      min-height: 600px;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: #888;
+      font-weight: 400;
+      margin-bottom: 6px;
+    }
+    .contact {
+      font-size: 12.5px;
+      color: #555;
+      margin-bottom: 32px;
+    }
+    .contact a { color: #1a6dc4; text-decoration: none; }
+    .contact a:hover { text-decoration: underline; }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: 28px 0;
+    }
+
+    h2 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      color: #aaa;
+      margin-bottom: 14px;
+    }
+
+    p {
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: #2a2a2a;
+      margin-bottom: 10px;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 0 16px;
+      margin-bottom: 20px;
+    }
+    .exp-date { font-size: 12px; color: #aaa; padding-top: 2px; line-height: 1.6; }
+    .exp-role { font-size: 13.5px; font-weight: 600; color: #1a1a1a; }
+    .exp-org { font-size: 12.5px; color: #777; margin-top: 2px; }
+    .exp-desc { font-size: 12.5px; color: #555; line-height: 1.65; margin-top: 5px; }
+
+    /* ── EDUCATION ── */
+    .edu-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 0 16px;
+      margin-bottom: 12px;
+    }
+    .edu-year { font-size: 12px; color: #aaa; }
+    .edu-degree { font-size: 13.5px; font-weight: 600; color: #1a1a1a; }
+    .edu-inst { font-size: 12.5px; color: #777; margin-top: 2px; }
+
+    /* ── LINKS ── */
+    .links-list { list-style: none; }
+    .links-list li {
+      border-bottom: 1px solid #f2f2f2;
+      padding: 10px 0;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .links-list li:last-child { border-bottom: none; }
+    .link-tag {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #ccc;
+      width: 52px;
+      flex-shrink: 0;
+    }
+    .links-list a { font-size: 13px; color: #1a6dc4; text-decoration: none; font-weight: 500; }
+    .links-list a:hover { text-decoration: underline; }
+    .link-note { font-size: 12px; color: #bbb; margin-left: 2px; }
+
+    /* ── CURSOR ── */
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 16px;
+      background: #1a6dc4;
+      vertical-align: text-bottom;
+      margin-left: 2px;
+      animation: blink 1s step-end infinite;
+    }
+
+    .page-footer {
+      text-align: center;
+      font-size: 11px;
+      color: #ccc;
+      margin-top: 60px;
+      padding-top: 16px;
+      border-top: 1px solid #f2f2f2;
+    }
+
+    @media (max-width: 560px) {
+      .doc { padding: 36px 24px 60px; }
+      .ruler { padding: 0 24px 3px; }
+      .exp-item, .edu-item { grid-template-columns: 1fr; gap: 2px; }
+      .exp-date, .edu-year { display: none; }
+      .titlebar-name { margin-right: 30px; font-size: 12px; }
+    }
   </style>
 </head>
 <body>
-<p class="p1"><span class="s1">~/etiennecousin/index.txt</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<h1 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 22.0px 'Helvetica Neue'; color: #0e0e0e; -webkit-text-stroke: #0e0e0e"><span class="s1">Etienne Cousin</span></h1>
-<p class="p4"><span class="s1">LIFE SCIENCES · STRATEGY · OPERATIONS</span></p>
-<p class="p5"><span class="s1"><a href="mailto:hello@yourdomain.com">etiennecousi</a>n@outlook.com</span><span class="s2">  ·  <a href="https://linkedin.com/in/etienne-cousin"><span class="s3">LinkedIn</span></a>  ·  London, UK</span></p>
-<p class="p6"><span class="s1">ABOUT</span></p>
-<p class="p7"><span class="s1">I'm a life sciences strategist and operator with a background spanning strategy consulting and early-stage biotech. I spent four years at L.E.K. Consulting advising pharma, MedTech, and CRO clients, then moved into a Head of Strategy &amp; Operations role at PreComb Therapeutics, a Series A precision oncology startup, where I built the commercial and operational foundation from the ground up.</span></p>
-<p class="p7"><span class="s1">I'm drawn to problems at the intersection of science, strategy, and execution — particularly where good data and clear thinking can make a meaningful difference in patient outcomes. Currently exploring the transition from operator to founder.</span></p>
-<p class="p6"><span class="s1">EXPERIENCE</span></p>
-<p class="p1"><span class="s1">2023 — present</span></p>
-<p class="p8"><span class="s1">Head of Strategy &amp; Operations</span></p>
-<p class="p4"><span class="s1">PreComb Therapeutics · London</span></p>
-<p class="p9"><span class="s1">Built GTM and sales infrastructure from scratch at a VC-backed Series A precision oncology company. Holds board observer experience and has managed strategic partnerships across European academic research networks.</span></p>
-<p class="p1"><span class="s1">2019 — 2023</span></p>
-<p class="p8"><span class="s1">Consultant → Senior Consultant</span></p>
-<p class="p4"><span class="s1">L.E.K. Consulting · London / Asia</span></p>
-<p class="p9"><span class="s1">Four years advising pharmaceutical, MedTech, and CRO clients on strategy, commercial due diligence, and market entry. Also ran an independent freelance consulting practice in Asia.</span></p>
-<p class="p6"><span class="s1">EDUCATION</span></p>
-<p class="p1"><span class="s1">2018 – 2019</span></p>
-<p class="p10"><span class="s1">MSc Biotechnology</span></p>
-<p class="p4"><span class="s1">Imperial College London</span></p>
-<p class="p1"><span class="s1">2015 – 2018</span></p>
-<p class="p10"><span class="s1">BA Biology</span></p>
-<p class="p4"><span class="s1">University of Oxford</span></p>
-<p class="p6"><span class="s1">WRITING &amp; PROJECTS</span></p>
-<p class="p11"><span class="s1">ESSAY</span></p>
-<p class="p12"><span class="s1">Your essay title here</span></p>
-<p class="p1"><span class="s1">Publication or platform · 2024</span></p>
-<p class="p11"><span class="s1">PROJECT</span></p>
-<p class="p12"><span class="s1">Investigator network graph</span></p>
-<p class="p1"><span class="s1">Clinical trial recruitment · GitHub</span></p>
-<p class="p11"><span class="s1">ESSAY</span></p>
-<p class="p12"><span class="s1">Another piece of writing</span></p>
-<p class="p1"><span class="s1">Substack · 2024</span></p>
-<p class="p11"><span class="s1">PROJECT</span></p>
-<p class="p12"><span class="s1">Another project</span></p>
-<p class="p1"><span class="s1">Brief description · Link</span></p>
-<p class="p1"><span class="s1">Etienne Cousin ©</span></p>
-<p class="p1"><span class="s1">London, UK</span></p>
-</body>
-</html>
+
+<div class="window">
+
+  <div class="titlebar">
+    <div class="traffic-lights">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+    </div>
+    <div class="titlebar-name">Etienne Cousin.txt</div>
+  </div>
+
+  <div class="ruler">
+    <div class="ruler-inner">
+      <span class="ruler-mark"><span class="ruler-tick"></span>1</span>
+      <span class="ruler-mark"><span class="ruler-tick"></span>2</span>
+      <span class="ruler-mark"><span class="ruler-tick"></span>3</span>
+      <span class="ruler-mark"><span class="ruler-tick"></span>4</span>
+      <span class="ruler-mark"><span class="ruler-tick"></span>5</span>
+      <span class="ruler-mark"><span class="ruler-tick"></span>6</span>
+      <span class="ruler-mark"><span class="ruler-tick"></span>7</span>
+      <span class="ruler-mark"><span class="ruler-tick"></span>8</span>
+      <span class="ruler-mark"><span class="ruler-tick"></span>9</span>
+    </div>
+  </div>
+
+  <div class="doc">
+
+    <h1>Etienne Cousin<span class="cursor"></span></h1>
+    <div class="subtitle">Life Sciences · Strategy &amp; Operations · London</div>
+    <div class="contact">
+      <a href="/cdn-cgi/l/email-protection#e28a878e8e8da287968b878c8c87818d97918b8ccc9a9b98"><span class="__cf_email__" data-cfemail="ec8489808083ac899885898282898f83999f8582c2949596">[email&#160;protected]</span></a>
+      &nbsp;·&nbsp;
+      <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+    </div>
+
+    <h2>About</h2>
+    <p>
+      I'm a life sciences strategist and operator with a background spanning strategy consulting and early-stage biotech.
+      I spent four years at L.E.K. Consulting advising pharma, MedTech, and CRO clients, then moved into a Head of
+      Strategy &amp; Operations role at PreComb Therapeutics, a Series A precision oncology startup, where I built the
+      commercial and operational foundation from scratch.
+    </p>
+    <p>
+      I'm drawn to problems at the intersection of science, strategy, and execution — particularly where good data
+      and clear thinking can make a meaningful difference in patient outcomes. Currently exploring the transition
+      from operator to founder.
+    </p>
+
+    <hr />
+
+    <h2>Experience</h2>
+
+    <div class="exp-item">
+      <div class="exp-date">2023 — present</div>
+      <div>
+        <div class="exp-role">Head of Strategy &amp; Operations</div>
+        <div class="exp-org">PreComb Therapeutics · London</div>
+        <div class="exp-desc">Built GTM and sales infrastructure from scratch at a VC-backed Series A precision oncology company. Board observer experience; managed strategic partnerships across European academic research networks including NCT Dresden, DKFZ, and University Hospital Zurich.</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">2019 — 2023</div>
+      <div>
+        <div class="exp-role">Consultant → Senior Consultant</div>
+        <div class="exp-org">L.E.K. Consulting · London &amp; Asia</div>
+        <div class="exp-desc">Four years advising pharmaceutical, MedTech, and CRO clients on strategy, commercial due diligence, and market entry. Also ran an independent freelance consulting practice across Asia.</div>
+      </div>
+    </div>
+
+    <hr />
+
+    <h2>Education</h2>
+
+    <div class="edu-item">
+      <div class="edu-year">2018 – 2019</div>
+      <div>
+        <div class="edu-degree">MSc Biotechnology</div>
+        <div class="edu-inst">Imperial College London</div>
+      </div>
+    </div>
+
+    <div class="edu-item" style="margin-bottom:0">
+      <div class="edu-year">2015 – 2018</div>
+      <div>
+        <div class="edu-degree">BA Biology</div>
+        <div class="edu-inst">University of Oxford</div>
+      </div>
+    </div>
+
+    <hr />
+
+    <h2>Writing &amp; Projects</h2>
+
+    <ul class="links-list">
+      <li>
+        <span class="link-tag">Essay</span>
+        <a href="#" target="_blank">Your essay title here</a>
+        <span class="link-note">— Publication · 2024</span>
+      </li>
+      <li>
+        <span class="link-tag">Project</span>
+        <a href="#" target="_blank">Investigator network graph</a>
+        <span class="link-note">— Clinical trial recruitment tool · GitHub</span>
+      </li>
+      <li>
+        <span class="link-tag">Essay</span>
+        <a href="#" target="_blank">Another piece of writing</a>
+        <span class="link-note">— Substack · 2024</span>
+      </li>
+      <li>
+        <span class="link-tag">Project</span>
+        <a href="#" target="_blank">Another project</a>
+        <span class="l
