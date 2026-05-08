@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>An Investor's Map of the AI-Bio Stack — Etienne Cousin</title>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #e8e8e8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 80px;
+      font-family: "Menlo", "Monaco", "Courier New", monospace;
+    }
+
+    .window {
+      width: 100%;
+      max-width: 760px;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow:
+        0 1px 1px rgba(0,0,0,0.08),
+        0 4px 12px rgba(0,0,0,0.12),
+        0 20px 40px rgba(0,0,0,0.10);
+      overflow: hidden;
+    }
+
+    .titlebar {
+      background: linear-gradient(to bottom, #f0f0f0 0%, #e0e0e0 100%);
+      border-bottom: 1px solid #c0c0c0;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      user-select: none;
+    }
+
+    .traffic-lights { display: flex; gap: 6px; }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .dot.red    { background: #ff5f57; border: 0.5px solid #e0443e; }
+    .dot.yellow { background: #ffbd2e; border: 0.5px solid #dea123; }
+    .dot.green  { background: #28c840; border: 0.5px solid #1aab29; }
+
+    .titlebar-name {
+      flex: 1;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 500;
+      color: #3a3a3a;
+      letter-spacing: -0.01em;
+      margin-right: 54px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ruler {
+      background: #f7f7f7;
+      border-bottom: 1px solid #d5d5d5;
+      height: 22px;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 72px 3px;
+      gap: 0;
+    }
+
+    .ruler-inner {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .ruler-mark {
+      font-size: 9px;
+      color: #bbb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px;
+    }
+
+    .ruler-tick {
+      width: 1px;
+      height: 5px;
+      background: #ccc;
+    }
+
+    .doc {
+      padding: 56px 72px 80px;
+      min-height: 600px;
+    }
+
+    .back-link {
+      display: inline-block;
+      font-size: 12px;
+      color: #1a6dc4;
+      text-decoration: none;
+      margin-bottom: 32px;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.04em;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: 26px;
+    }
+
+    .essay-meta {
+      font-size: 12px;
+      color: #aaa;
+      margin-bottom: 34px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: 30px 0;
+    }
+
+    p {
+      font-size: 13.5px;
+      line-height: 1.78;
+      color: #2a2a2a;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 38px 0 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .article-image {
+      margin: 28px 0 36px;
+      text-align: center;
+    }
+
+    .article-image img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #e8e8e8;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .image-caption {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    .page-footer {
+      text-align: center;
+      font-size: 11px;
+      color: #bbb;
+      margin-top: 60px;
+      padding-top: 16px;
+      border-top: 1px solid #f2f2f2;
+    }
+
+    .page-footer a {
+      color: #1a6dc4;
+      text-decoration: none;
+    }
+
+    .page-footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 560px) {
+      body { padding: 24px 12px 60px; }
+      .doc { padding: 36px 24px 60px; }
+      .ruler { padding: 0 24px 3px; }
+      .titlebar-name { margin-right: 30px; font-size: 12px; }
+      h1 { font-size: 21px; }
+      p { font-size: 13px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="window">
+
+  <div class="titlebar">
+    <div class="traffic-lights">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+    </div>
+    <div class="titlebar-name">An Investor's Map of the AI-Bio Stack.txt</div>
+  </div>
+
+  <div class="ruler">
+    <div class="ruler-inner">
+      <span class="ruler-mark"><span class="ruler-tick"></span>1</span>
+      <span class="ruler-mark"><span class="ruler-tick"></span>2</span>
+      <span class="ruler-mark"><span class="ruler-tick"></span>3</span>
+      <span class="ruler-mark"><span class="ruler-tick"></span>4</span>
+      <span class="ruler-mark"><span class="ruler-tick"></span>5</span>
+      <span class="ruler-mark"><span class="ruler-tick"></span>6</span>
+      <span class="ruler-mark"><span class="ruler-tick"></span>7</span>
+      <span class="ruler-mark"><span class="ruler-tick"></span>8</span>
+      <span class="ruler-mark"><span class="ruler-tick"></span>9</span>
+    </div>
+  </div>
+
+  <div class="doc">
+
+    <a class="back-link" href="../index.html">← Back to home</a>
+
+    <h1>An Investor's Map of the AI-Bio Stack</h1>
+
+    <div class="subtitle">
+      Three layers, three theses. Most funds are betting on one of them and pretending to bet on all three.
+    </div>
+
+    <div class="essay-meta">Essay · 2026</div>
+
+    <hr />
+
+    <p>
+      "AI in biotech" has become an analytically useless category.
+    </p>
+
+    <p>
+      A pre-seed cheque into a protein language model startup, a Series B into Recursion, and a growth round in Strateos all get filed under the same heading in pitch decks and market reports. They are not the same investment. The defensibility mechanisms differ. The capital intensity differs. The exits differ by a factor of five in time-to-liquidity. The diligence skill stack required to underwrite each is barely overlapping.
+    </p>
+
+    <p>
+      If you're allocating capital across the space, the first useful move is to stop treating it as one space.
+    </p>
+
+    <p>
+      This piece argues that AI-bio is three layers, each with distinct economics. Therapeutic developers, agentic workflow platforms, and biology-native infrastructure. Each layer rewards a different fund profile, and most funds claiming to invest "AI-bio broadly" are overweight one layer in practice without admitting it.
+    </p>
+
+    <div class="article-image">
+      <img src="images/ai_bio_stack_matrix.jpeg" alt="Matrix mapping the three layers of the AI-bio stack: therapeutics, agentic workflow platforms, and biology-native infrastructure." />
+      <div class="image-caption">The AI-bio stack across three investable layers.</div>
+    </div>
+
+    <h2>Layer 1: Therapeutics</h2>
+
+    <p>
+      The companies whose terminal product is a drug. Insilico, Recursion, Generate Biomedicines, Isomorphic Labs, Relay Therapeutics. AI is the discovery engine; the asset is the molecule.
+    </p>
+
+    <p>
+      The defensibility mechanism is unchanged from traditional biotech. Clinical data and intellectual property. The AI shifts the cost of generating the input but not the structure of the moat. A patent on an AI-discovered molecule is worth what a patent on a serendipitously-discovered molecule is worth. The Phase 2 readout that validates the asset has the same evidentiary requirements either way. AI is a productivity tool here, not a moat.
+    </p>
+
+    <p>
+      Capital intensity is very high. Platform claims notwithstanding, you still pay clinical trial costs, and clinical trial costs are where the $2.6 billion all-in number comes from. Insilico's hybrid licence-and-develop model is the current consensus answer for managing this. Develop a flagship asset internally to demonstrate end-to-end credibility, out-license the rest at PCC stage to capture early value without absorbing late-stage burn. It's elegant strategy. It's also unproven at scale, since the clinical proof points across the AI-native therapeutic portfolio are still thin.
+    </p>
+
+    <p>
+      Time to validation runs 5 to 10+ years. PCC nomination is a milestone, not validation. Phase 2 readouts are the threshold where the platform-versus-asset question gets answered, and most AI-native therapeutic companies are still pre-that.
+    </p>
+
+    <p>
+      Exit profile is IPO or pharma M&amp;A, both gated by clinical readouts. Insilico's HKEX listing in December 2025 is one path. Nimbus Therapeutics selling NDI-034858 to Takeda for ~$6 billion after Phase 2b results is the other. Both require clinical data.
+    </p>
+
+    <p>
+      Who should invest here: dedicated bio funds with deep clinical expertise and patient capital. Generalist tech funds underperform in this layer because they systematically underprice clinical risk. The trap to avoid is paying platform multiples for what is functionally a single-asset bet.
+    </p>
+
+    <h2>Layer 2: Agentic workflow platforms</h2>
+
+    <p>
+      Companies building closed-loop systems that orchestrate hypothesis generation, experimental design, and analysis with minimal human intervention. EvolutionaryScale, Chai Discovery, the agentic R&amp;D platforms that Bessemer's Atlas mapped earlier this year.
+    </p>
+
+    <p>
+      This is the layer with the most theoretical upside and the least proven defensibility. The pitch is data flywheels. Closed-loop discovery generates proprietary data, which improves the model, which generates more proprietary data. The hope is that compounding data advantages produce something durable.
+    </p>
+
+    <p>
+      The honest assessment is that most data flywheels in AI-bio haven't actually flywheel'd yet. Whether the moat is real depends on three empirical questions that will take 3 to 5 years to resolve. Does proprietary data advantage compound faster than open-source models close the gap? Does workflow lock-in deepen with usage, or does it shallow as alternatives mature? Can the platform vertically integrate into therapeutics without losing the platform multiples it claimed to deserve?
+    </p>
+
+    <p>
+      Capital intensity is medium. Software margins on the model side, hardware drag from lab integration. $50 to $200 million to scale to defensible position, give or take.
+    </p>
+
+    <p>
+      Time to validation runs 2 to 4 years to revenue traction, longer to prove the data flywheel actually compounds. Two clocks running at different speeds, which is part of what makes the layer hard to underwrite.
+    </p>
+
+    <p>
+      Exit profile is most often strategic acquisition by pharma or vertical integration into therapeutics. Pure-platform IPOs in this layer are rare and the public market has been unkind to platform-without-pipeline stories.
+    </p>
+
+    <p>
+      Who should invest here: funds that understand both AI infrastructure economics and life sciences workflows. The Venn intersection is small. The trap to avoid is foundation model wrappers with thin proprietary data dressed up as agentic platforms. Rigorous diligence on the data moat is everything.
+    </p>
+
+    <h2>Layer 3: Biology-native infrastructure</h2>
+
+    <p>
+      Data generation, data management, lab automation, foundation models offered as a layer. Strateos, Latch, Quilt, Culture Biosciences, Ginkgo's automation business, Chai if you read its early-mover position generously.
+    </p>
+
+    <p>
+      This is the layer where AI-bio looks most like traditional infrastructure investing. The defensibility mechanisms are recognisable. Switching costs, data network effects, unit economics that compound at scale. The Illumina analogy gets invoked too easily, but the structural argument is right. Sequencing made DNA computable and the company that owned the reagent layer captured most of the value. If AI makes biology computable in the broader sense, the analogous layer should produce analogous outcomes.
+    </p>
+
+    <p>
+      The caveat is that "compute as a reagent" is a beautiful analogy that hasn't been mechanically proven. Sequencing had a unit-economics moment when cost-per-genome crossed thresholds that unlocked new applications. AI-bio infrastructure doesn't yet have a comparable curve. It might, but the bet is on a development that hasn't fully happened.
+    </p>
+
+    <p>
+      Capital intensity varies wildly. Pure software like Latch and Quilt is light. Lab automation like Ginkgo and Strateos is brutal, with hardware capex and physical footprint that breaks the software economics that made the bet attractive in the first place. Don't conflate these subsegments.
+    </p>
+
+    <p>
+      Time to validation is 1 to 3 years to commercial traction. The fastest cycle in the stack. Revenue is measurable in real time and product-market fit shows up in retention and expansion metrics, not 71-patient trials.
+    </p>
+
+    <p>
+      Exit profile is IPO or strategic acquisition by cloud providers, large pharma, or sequencing incumbents. The cleanest comparable economics from tech investing apply here.
+    </p>
+
+    <p>
+      Who should invest here: tech-fluent funds with infrastructure experience. Bessemer's recent market map is essentially this thesis applied at the asset class level. The trap to avoid is overpaying for revenue growth that turns out to be services revenue dressed up as software.
+    </p>
+
+    <h2>The synthesis</h2>
+
+    <p>
+      Three claims to land on.
+    </p>
+
+    <p>
+      First, no fund should invest in all three layers without admitting they're three different strategies. The skill stack to underwrite Layer 1, with its clinical risk, regulatory dynamics, and patent estate, is genuinely different from Layer 3, with its infrastructure economics, network effects, and unit economics. Funds that invest "AI-bio broadly" are usually overweight one layer in practice. Honest portfolio construction requires picking a layer and committing to it, or building distinct teams for each.
+    </p>
+
+    <p>
+      Second, the most under-capitalised layer right now is the agentic workflow middle. Layer 1 has the most attention and the most capital because it's the most legible category to LPs. Layer 3 has the cleanest comparable economics imported from tech. Layer 2 sits awkwardly between them and is the hardest to underwrite, which is precisely why it's likely undervalued if the data flywheels prove out.
+    </p>
+
+    <p>
+      Third, the cross-layer question matters most. Who captures value when all three layers commoditise to some degree? The answer depends on which layer's data flywheel proves most durable, and that's an empirical question. My current bet is that Layer 3 captures the most value in the 5 to 7 year horizon, because infrastructure plays compound faster than therapeutic ones, while Layer 1 captures the most value in the 10 to 15 year horizon, because clinical proof points eventually arrive and the assets are worth what they're worth. Layer 2 is the hardest call.
+    </p>
+
+    <p>
+      A fund choosing a layer is choosing a thesis. The thesis selection is the actual investing skill.
+    </p>
+
+    <div class="page-footer">
+      Written by <a href="../index.html">Etienne Cousin</a>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
