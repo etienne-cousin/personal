@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Predictive Validity Problem | Etienne Cousin</title>
+  <meta name="description" content="Why better experimental systems, not just bigger models, may be the real bottleneck in AI-driven drug discovery." />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      color: #111111;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 56px 24px 96px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 40px;
+      color: #555;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 42px;
+      line-height: 1.15;
+      margin: 0 0 16px;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      line-height: 1.45;
+      color: #444;
+      font-style: italic;
+      margin: 0 0 40px;
+    }
+
+    h2 {
+      font-size: 26px;
+      line-height: 1.25;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      font-size: 18px;
+      margin: 0 0 22px;
+    }
+
+    ul, ol {
+      font-size: 18px;
+      margin: 0 0 24px 24px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e5e5e5;
+      margin: 36px 0;
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding: 40px 20px 72px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .subtitle {
+        font-size: 18px;
+      }
+
+      p, ul, ol {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <a class="back-link" href="/writing/">← Back to writing</a>
+
+    <h1>The Predictive Validity Problem: Why Better Models Beat More Data</h1>
+
+    <p class="subtitle">
+      The unsexy bottleneck in AI-bio is wet-lab fidelity, and capital is under-flowing here relative to model-building. A view from inside the category.
+    </p>
+
+    <hr />
+
+    <p>AI in drug discovery is currently bottlenecked by the predictive validity of the experimental systems generating training data. Solving this is harder and less glamorous than building bigger models, and capital flows in the AI x Bio field are systematically misallocated as a result.</p>
+
+    <h2>The training data problem nobody wants to talk about</h2>
+
+    <p>The deep learning revolution in biology has a simple story attached to it. AlphaFold proved that a sufficiently capable model trained on a sufficiently large corpus of structures could predict protein folding with accuracy approaching experimental methods. The Protein Data Bank had 200,000 curated structures by 2020, the architecture was right, and the result was transformative.</p>
+
+    <p>Every subsequent AI-bio pitch invokes some version of this story. Bigger models, more data, transformer architectures applied to whatever biological problem you're trying to solve. Generative chemistry, target identification, protein-protein interaction prediction, ADMET forecasting, you name it.</p>
+
+    <p>But the story has a specific shape that's worth examining. AlphaFold worked because the input data was clean, structured, and high-fidelity. Crystal structures are crystal structures. The X-ray diffraction tells you where the atoms are. There's noise, but the ground truth is well-defined, the measurement is mature, and the relationship between input and output is causal. Train on enough of those, and the model learns physics.</p>
+
+    <p>But most of biology is not like this.</p>
+
+    <p>The training data for AI-driven target discovery comes from cell line experiments, where the cell lines are decades-old immortalised populations that have drifted from the patient tissues they were derived from and accumulated thousands of mutations not present in any actual disease. The training data for AI-driven efficacy prediction comes from mouse models that have been bred for genetic homogeneity, housed in pathogen-free facilities, and fed standardised diets, none of which describes a single human patient. The training data for AI-driven toxicity prediction comes from acute high-dose animal studies that bear an uncertain relationship to chronic low-dose human exposure.</p>
+
+    <p>Garbage in, sophisticated garbage out. The model architecture doesn't fix this, and more data of the same quality doesn't fix this. The bottleneck is the experimental systems themselves.</p>
+
+    <h2>What predictive validity actually means</h2>
+
+    <p>The term "predictive validity" comes out of pharmacology and gets thrown around loosely. It's worth being precise about what it should mean for AI x Bio.</p>
+
+    <p>Predictive validity is the question of whether a preclinical experimental system actually forecasts how a drug, target, or biomarker will behave in humans. It's a measurable property: you can correlate model output to clinical outcomes across drugs that have run the gauntlet, you can publish R-squared values, and you can benchmark organoid responses against the actual patients those organoids were derived from. The fact that we mostly don't do this is the point, not the counter-argument.</p>
+
+    <p>Industry estimates put the failure rate from Phase 1 to drug approval at around 90%, with most of the attrition concentrated in Phase 2 and driven by efficacy failures. The story often goes something like this: the model said the molecule worked, the animal data was clean, the biomarker moved, but then humans didn't respond. This is, by definition, a predictive validity failure. The preclinical system gave a green light that turned out to be wrong, and we discovered it after spending years and hundreds of millions of dollars, and crucially, without a single new medicine reaching patients.</p>
+
+    <p>The conventional response is "drug discovery is hard, biology is complex, attrition is the price of doing business." That's true and also a way of avoiding the question. A more honest framing might be that we have an industry-wide measurement failure. We're using prediction tools whose calibration we don't measure, and we're surprised when the predictions miss.</p>
+
+    <p>AI doesn't fix this, AI inherits it. A model trained on cell line data predicts cell line behaviour, not patient behaviour. The leap from one to the other is the part nobody's measuring rigorously.</p>
+
+    <h2>What better fidelity actually looks like</h2>
+
+    <p>The technologies that generate higher-fidelity preclinical data are not new and are not exotic. The point is that they're underused, under-capitalised relative to model-building, and rarely benchmarked against clinical outcomes with any rigour. The portfolio of options is wider than any single approach. Come along with me for a short tour:</p>
+
+    <p><strong>Patient-derived organoids and primary cell cultures</strong> preserve patient-specific genetics and tissue architecture. They've been validated retrospectively in colorectal, breast, and pancreatic cancer with concordance rates to clinical response in the 70-90% range, depending on the indication and the readout. But they're slow and expensive to grow, which is why most pharma R&amp;D still doesn't use them at scale.</p>
+
+    <p><strong>Patient-derived xenografts</strong> propagate human tumour tissue in immunocompromised mice. This is an older technique, is well-validated for some oncology applications, and is increasingly paired with AI for treatment matching. The limitation is that they strip out the human immune system, which of course, is pretty essential for immuno-oncology.</p>
+
+    <p><strong>Microphysiological systems and organ-on-chip platforms</strong> like Emulate, CN Bio, and TissUse model human tissue physiology in microfluidic devices. The FDA Modernization Act 2.0 in 2022 explicitly opened regulatory pathways that don't require animal testing, which is the first material policy shift in this space in decades. Adoption is still early.</p>
+
+    <p><strong>iPSC-derived disease models</strong> are particularly important for therapeutic areas where animal models are notoriously bad. Cardiac toxicity, neurodegeneration, psychiatric disease. The limitation is that mouse hearts are not human hearts, and mouse brains are spectacularly not human brains. However, iPSC-derived cardiomyocytes and neurons have transformed cardiac safety screening over the last decade in a way that most non-specialists haven't internalised.</p>
+
+    <p><strong>Humanised mouse models</strong> reconstitute human immune systems in immunodeficient mice. These are critical for immuno-oncology and infectious disease, where the immune response is the mechanism of action.</p>
+
+    <p><strong>Ex vivo tumour slice cultures</strong> preserve the full tumour microenvironment for short windows of time, including stromal cells and resident immune cells that organoids and PDX models lose. Short experimental windows but high fidelity for what they capture.</p>
+
+    <p><strong>Multi-omics readouts on existing patient samples</strong> apply AI to extract more signal from data that's already been generated, rather than generating new experiments. Spatial transcriptomics, single-cell atlases, proteomics on archived biopsies. Lower cost, but bottlenecked by the quality and granularity of the original sample collection.</p>
+
+    <p><strong>Real-world evidence linkage</strong> matches preclinical model behaviour to actual clinical outcomes through registries and longitudinal data. This is the closing of the loop that almost nobody does properly. If you don't measure whether your model predicts the clinic, you don't know whether your model predicts the clinic.</p>
+
+    <p>The right answer for any specific therapeutic question is usually a combination of these, not any single technology. The unifying argument is that all of them generate higher-fidelity training data than the standard preclinical stack, and AI trained on higher-fidelity data is the actual unlock.</p>
+
+    <h2>The view from inside</h2>
+
+    <p>I work at a company that uses patient-derived microtissues for precision oncology. The argument I'm making applies to our work too, and I've seen it up close.</p>
+
+    <p>The thing you learn quickly when you work in this space is that the unit economics are brutal compared to model-building. A foundation model can train on existing public data and ship a benchmark improvement in months. A wet-lab system that generates higher-fidelity training data needs sample procurement, IRB approval, tissue handling protocols, growth optimisation, characterisation, and benchmarking before you've generated a single useful data point. The timelines are years, not quarters. The capital is heavier and the defensibility story is harder to tell to a tech-fluent investor who has been trained to look for software margins.</p>
+
+    <p>This is why I think the predictive validity layer is under-capitalised. The economics are unfavourable on a venture timescale, the comparable from tech investing doesn't apply cleanly, and the LP narrative is harder to write. Capital flows toward the things that are easy to underwrite, not necessarily the things that are most valuable.</p>
+
+    <p>But the bet is straightforward. If predictive validity is the bottleneck on AI x Bio, the companies generating high-fidelity training data are the ones whose outputs become the input to everyone else's models. The data layer becomes the moat, in the same way that the Protein Data Bank made AlphaFold possible. A platform that demonstrably improved Phase 2 success rates by 10%, by virtue of producing better preclinical data, would be worth more than every generative chemistry company combined. That platform doesn't yet exist at scale, but I believe that someone is going to build it, and there are several plausible candidates for who.</p>
+
+    <ol>
+      <li>Specialist contract research organisations who have built reproducible workflows around microphysiological systems.</li>
+      <li>Academic-spinout therapeutics companies who treat their internal data generation as the durable asset.</li>
+      <li>Big pharma in-house platforms where the data flywheel turns slowly but at scale.</li>
+      <li>Patient-derived biobanks paired with AI infrastructure layers.</li>
+    </ol>
+
+    <p>The mechanism by which the value gets captured is uncertain, and the fact that the value exists is, I think, even less uncertain.</p>
+
+    <h2>The misallocation thesis</h2>
+
+    <p>Recent reports from BCG and Wellcome on AI in drug discovery contains a chart that I keep returning to: cumulative private investment in the top 20 AI-first biotechs by use case showing $5.2 billion into target identification, $4.0 billion into small molecule design, $1.4 billion into antibodies, $0.6 billion into vaccines. Effectively zero into safety and toxicity modelling.</p>
+
+    <p>What's missing from the chart is investment into the experimental systems that generate the training data those models depend on. It's not in the chart because it isn't tracked as a category. The investments that do happen in this space are scattered across precision medicine companies, contract research organisations, biobanks, and tools companies, and they don't sum to anything close to what flows into the model layer.</p>
+
+    <p>I believe that this is the key misallocation. The model layer is over-funded relative to the data layer that determines whether the models work. Capital is concentrating where it's easiest to deploy, not where the marginal return is highest.</p>
+
+    <p>If predictive validity is the bottleneck, the next decade of returns in AI x Bio doesn't go to whoever builds the largest model. It goes to whoever generates the highest-fidelity training data, links it rigorously to clinical outcomes, and builds the closed loop that compounds over time.</p>
+
+    <h2>What this means for the industry and for investors</h2>
+
+    <p>There are three implications:</p>
+
+    <p>First, the diligence question on every AI-bio deal should include "what's the source of your training data and how is its predictive validity established?" Most pitches don't have a good answer, but the ones that do are the ones worth paying attention to.</p>
+
+    <p>Second, the under-capitalised opportunity is the data layer, not the model layer. Companies generating proprietary high-fidelity preclinical data, particularly those that close the loop to clinical outcomes, are systematically undervalued because the unit economics look unfamiliar to investors trained on software comparables. This is a feature, not a bug.</p>
+
+    <p>Third, the long-term equilibrium is one in which model architectures commoditise faster than data does. Open-source foundation models are already eroding the moats of platform companies that thought their algorithms were their advantage. The companies that survive this are the ones whose proprietary data is the actual asset.</p>
+
+    <p>Better models beat more data is the version of this argument that fits in a headline, but the fuller version is that better experimental systems beat both, because they produce the data the models depend on. That's where I believe the field has to go, and where smart capital should follow.</p>
+  </main>
+</body>
+</html>
