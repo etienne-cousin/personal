@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Clinical Throughput Problem | Etienne Cousin</title>
+  <meta name="description" content="Why more AI-generated drug candidates will not necessarily mean more approved medicines if clinical trial throughput remains the bottleneck." />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      color: #111111;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 56px 24px 96px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 40px;
+      color: #555;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 42px;
+      line-height: 1.15;
+      margin: 0 0 16px;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      line-height: 1.45;
+      color: #444;
+      font-style: italic;
+      margin: 0 0 40px;
+    }
+
+    h2 {
+      font-size: 26px;
+      line-height: 1.25;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      font-size: 18px;
+      margin: 0 0 22px;
+    }
+
+    ol, ul {
+      font-size: 18px;
+      margin: 0 0 24px 24px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    blockquote {
+      margin: 32px 0;
+      padding-left: 20px;
+      border-left: 4px solid #ddd;
+      color: #333;
+      font-size: 20px;
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    a {
+      color: #111;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e5e5e5;
+      margin: 36px 0;
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding: 40px 20px 72px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .subtitle {
+        font-size: 18px;
+      }
+
+      p, ol, ul {
+        font-size: 17px;
+      }
+
+      blockquote {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <a class="back-link" href="/writing/">← Back to writing</a>
+
+    <h1>The Clinical Throughput Problem: Why More Candidates Won't Mean More Drugs</h1>
+
+    <p class="subtitle">
+      AI is about to flood the funnel with preclinically validated candidates. The clinic isn't ready, and the bottleneck just relocates downstream. Part 2 of a series on where AI in drug discovery actually breaks.
+    </p>
+
+    <hr />
+
+    <p>In my last piece, I argued that the predictive validity of preclinical experimental systems is the binding constraint on AI in drug discovery, and that capital is misallocated toward model-building relative to the wet-lab data layer that determines whether the models are calibrated. That piece took the upstream view. This piece takes the downstream view, and the picture is worse.</p>
+
+    <p>If you fix the predictive validity problem, the next bottleneck is clinical throughput. AI drug discovery is going to dump a much bigger pile of candidates onto a system that already takes 10-15 years and 60-70% of total drug development cost to test what we have today. The marginal computationally validated drug doesn't matter if there's nowhere to run it.</p>
+
+    <p>This is the second structural bottleneck that AI on its own can't solve.</p>
+
+    <h2>The arithmetic of the funnel</h2>
+
+    <p>Drug discovery is a funnel. Hundreds of preclinical candidates yield a small number of clinical entries, and only 8-12% of those reach approval. AI is widening the top of the funnel through computationally generated chemistry, automated target identification, and higher-fidelity preclinical screening. Collectively, these will produce more candidates with more credible mechanistic stories than the field has ever had to triage.</p>
+
+    <p>But the throat of the funnel does not widen automatically. Clinical capacity is gated by the number of trial sites, the number of trained investigators, the number of patients willing to enrol, the number of IRBs, the average days to IND, the average days to first patient dosed, and the cost per patient. Those numbers move slowly, in some cases not at all.</p>
+
+    <p>Rising costs per patient in Phase 1 trials show that the funnel is getting more expensive at exactly the moment AI is asking it to do more work. If AI raises preclinical candidate volume by 5x and clinical capacity is roughly fixed, the marginal candidate isn't tested. It sits in someone's data warehouse with a beautiful in silico story attached to it. The bottleneck doesn't magically go away, it just relocates, and we trade an under-supply of plausible candidates for an over-supply that the system can't process.</p>
+
+    <h2>What the clinic is actually broken on</h2>
+
+    <p>The diagnosis of why clinical trials are slow is well-documented and largely converges. Adam Kroetsch's recent piece on clinical trial inefficiency is worth reading in full, but the short version is that the industry is structurally arranged to resist standardisation:</p>
+
+    <ol>
+      <li>Each trial is custom-built from scratch, on the assumption that scientific distinctness requires operational distinctness.</li>
+      <li>The market is fragmented across sponsors, sites, CROs, and central labs, none of whom can mandate a common standard.</li>
+      <li>Sponsors and sites operate under deep institutional mistrust. The practice of 100% source data verification, which the FDA has explicitly recommended against for over a decade, still consumes 25-40% of trial costs.</li>
+      <li>Regulatory uncertainty is more binding than regulation itself. Sponsors don't know what FDA reviewers will accept in practice, so they default to the most conservative protocol they've seen succeed before.</li>
+      <li>Failure is career-ending for individual managers, which pushes the industry's risk aversion well past the rational firm-level optimum.</li>
+    </ol>
+
+    <p>The cumulative effect is a clinical trials industry that runs as a series of one-off custom space launches when it should run as a manufacturing line. By Kroetsch's count, the typical phase 3 trial collects on the order of three million data points, most of them still on paper, with bespoke case report forms that companies copy-paste from Word documents. The work is operational, not scientific, but it has been kept ring-fenced from the engineering disciplines — standardisation, modularisation, automation, iterative testing — that other industries use to absorb productivity gains.</p>
+
+    <p>This isn't a problem AI fixes by itself either, as AI inherits the workflow it's dropped into. Although a foundation model that drafts a clinical study report in ten minutes saves Novo Nordisk weeks of medical writing time, it doesn't change the throughput of the trial. The bottleneck is the trial, not the paperwork.</p>
+
+    <h2>The geopolitical evidence</h2>
+
+    <p>The clearest evidence that the clinic is the binding constraint is that it has already become a competitive frontier between national systems, and the US is losing.</p>
+
+    <p>Jake Becraft, CEO of Strand Therapeutics, has been an articulate voice on this. From his testimony to the U.S. House Select Committee on China earlier this year:</p>
+
+    <blockquote>
+      “The defining competitive metric in modern biotechnology is no longer who discovers a promising therapy first. It is who can turn that discovery into first-in-human clinical data the fastest.”
+    </blockquote>
+
+    <p>The key point here is that first-in-human data is a flywheel. When a therapy produces early human results, the program becomes derisked, investors step in, partnerships form, manufacturing capacity expands, clinical centres gain experience running more trials, and the cycle compounds. The capacity to run early-stage trials is the upstream input to the entire industrial base.</p>
+
+    <p>FDA Commissioner Marty Makary's own numbers, in a recent budget request to Congress, put the US at 380 days from pre-IND request to IND go-ahead, versus 220 days in China. Australia's Clinical Trial Notification scheme requires only IRB approval plus a notification to the regulator for most early-phase studies, with full regulatory review reserved for high-risk trials. Both systems have placed structural trust in local IRBs that the US system, with its parallel layers of FDA and IRB oversight, has not. The result is a measurable migration of early-stage trials offshore. The industrial-policy implications of that migration deserve their own treatment, and I'll take that up in a follow-on piece.</p>
+
+    <h2>The view from inside</h2>
+
+    <p>I work at a precision oncology company that sits at the seam between preclinical platforms and early clinical translation, and I've watched this pattern from the moment a high-fidelity preclinical signal becomes a clinical question. The capital, attention, and operational time required to translate a strong preclinical readout into a first-in-human study is, in my experience, almost always under-estimated by people who have not done it. The preclinical work generates the conviction. The clinical work generates the value, and the path from one to the other in the US is unnecessarily long.</p>
+
+    <p>What this means is that the closed-loop data flywheel I argued for in my last piece — high-fidelity preclinical data feeding back from clinical outcomes — doesn't compound unless the clinical side keeps pace. If first-in-human is a bottleneck, the loop stays open. The signal never returns to the model. AI on the data layer accelerates the half of the loop that's already running and stalls on the half that isn't.</p>
+
+    <h2>The misallocation, again</h2>
+
+    <p>In the last piece I argued that capital is misallocated toward the model layer relative to the preclinical data layer. The same argument applies one funnel-stage further down. The clinical operations layer is also under-capitalised relative to the model-and-discovery layer, and for the same structural reason: the unit economics are unfavourable on a venture timescale, the comparable from tech investing doesn't apply, and the LP narrative is harder to write than a generative chemistry deck.</p>
+
+    <p>Alex Schubert has recently mapped four late-stage clinical workflows that are obvious candidates for LLM automation: regulatory affairs, pharmacovigilance, clinical trial programming, and medical writing. Together, these four functions account for more than $30 billion in annual spend, or roughly 10% of global pharma R&amp;D. By his count, the AI-native companies attacking this layer have collectively raised something in the low hundreds of millions, against the $20 billion that's gone into AI for drug discovery. The asymmetry mirrors exactly the asymmetry between the model layer and the preclinical data layer in the previous piece.</p>
+
+    <p>In truth, the trial layer is harder to disrupt than the discovery layer, and the addressable market is more fragmented than it looks, but it is also where the throughput constraint actually binds. If AI in discovery widens the top of the funnel and the throat stays narrow, value capture has to migrate to whoever widens the throat — and crucially, to whoever shortens the time between a computational candidate and the first dosed patient.</p>
+
+    <h2>What this means for the industry and for investors</h2>
+
+    <p>Three implications:</p>
+
+    <p>First, every AI-bio investment thesis should now include an explicit clinical strategy. Diligence questions need to go beyond simply "what's your training data and how is its predictive validity established?". It's much more important to ask "how do you plan to translate computational candidates into first-in-human data, and on what timeline?". Companies that have a credible answer, often involving Australia-first or hybrid trial designs, are derisking the second-stage bottleneck while everyone else is still optimising the first.</p>
+
+    <p>Second, the under-capitalised opportunity is the clinical operations layer, in three specific shapes:</p>
+
+    <ol>
+      <li><strong>Lean trial infrastructure:</strong> Standardised protocol templates, modular site networks, and risk-based monitoring platforms that turn the one-off custom launch into something closer to a production line. Most of this is policy-bottlenecked, but the policy environment is shifting.</li>
+      <li><strong>Clinical operations AI:</strong> Regulatory writing, pharmacovigilance aggregation, and protocol-to-execution automation. Schubert's caveat is real — large pharmas may build internal on top of frontier models — but vertical specialists with deep workflow expertise still have a path, particularly into mid-market biotech.</li>
+      <li><strong>Australia-first and hybrid CROs:</strong> Trial operators built around the regulatory speed advantages that already exist offshore, sold on time-to-first-patient as a procurement criterion, the way SaaS companies sold time-to-deploy.</li>
+    </ol>
+
+    <p>Third, the geopolitical layer matters. If early clinical capacity continues to migrate offshore, the long-run consequence is a Western biotech industry that has lost the operational muscle to run its own first-in-human studies at scale, and rebuilding that capacity takes a generation. The fuller industrial-policy argument is the subject of the next piece in this series.</p>
+
+    <h2>The pair</h2>
+
+    <p>The two pieces of this argument fit together. Better experimental systems beat better models, but better experimental systems plus faster clinical throughput beat both. The model layer is well-funded. The two adjacent layers, preclinical fidelity upstream and clinical throughput downstream, are not. I believe that capital flows over the next decade will catch up to this asymmetry, because the marginal return on a tenth generative chemistry company is approaching zero, while the marginal return on a credible lean-trials platform or a high-fidelity preclinical data company is still uncapped.</p>
+
+    <p>The unlock is the operational scaffolding around AI that decides whether the candidates get tested, the data gets generated, and the loop closes. That's where the field has to go, and where smart capital should follow.</p>
+  </main>
+</body>
+</html>
