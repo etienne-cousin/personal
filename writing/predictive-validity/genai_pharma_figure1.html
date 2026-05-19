@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 1 – GenAI Evidence Distribution</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f7f7f5;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 48px 20px;
+    min-height: 100vh;
+  }
+
+  .figure {
+    background: #ffffff;
+    width: 100%;
+    max-width: 740px;
+    padding: 38px 44px 32px;
+    border-top: 2.5px solid #1a1a1a;
+    font-family: 'Jost', sans-serif;
+    color: #1a1a1a;
+  }
+
+  /* Header */
+  .fig-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #AAAAA0;
+    margin-bottom: 9px;
+  }
+
+  .fig-title {
+    font-family: 'Lora', serif;
+    font-size: 17.5px;
+    font-weight: 700;
+    line-height: 1.38;
+    color: #0f0f0f;
+    margin-bottom: 8px;
+    max-width: 580px;
+  }
+
+  .fig-subtitle {
+    font-size: 11.5px;
+    font-weight: 400;
+    color: #777770;
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+
+  .caveat-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #F8F2E6;
+    border: 1px solid #DDD5C2;
+    border-radius: 2px;
+    padding: 4px 10px;
+    margin-bottom: 28px;
+    font-size: 10px;
+    font-weight: 500;
+    color: #7A7060;
+    letter-spacing: 0.02em;
+  }
+
+  .caveat-icon {
+    font-size: 10px;
+    opacity: 0.75;
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #EEEEE8;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 10.5px;
+    font-weight: 500;
+    color: #555550;
+    letter-spacing: 0.03em;
+  }
+
+  .swatch {
+    width: 13px;
+    height: 13px;
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+
+  .sw-time { background: #1D3557; }
+  .sw-cost { background: #8DB6CE; }
+
+  /* Phase rows */
+  .phase-rows { display: flex; flex-direction: column; }
+
+  .phase-row {
+    display: grid;
+    grid-template-columns: 110px 1fr 186px;
+    align-items: start;
+    column-gap: 18px;
+    padding: 16px 0;
+    border-bottom: 1px solid #EEEEE8;
+  }
+
+  /* Phase label */
+  .phase-label { padding-top: 3px; }
+
+  .phase-name {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin-bottom: 3px;
+  }
+
+  .phase-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: #AAAAAA;
+    text-transform: uppercase;
+  }
+
+  /* Bar */
+  .bar-wrap { padding-top: 5px; }
+
+  .bar-track {
+    height: 20px;
+    background: #F0F0EC;
+    border-radius: 1px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 7px;
+  }
+
+  .bar-inner {
+    position: absolute;
+    left: 0; top: 0;
+    height: 100%;
+    display: flex;
+  }
+
+  .bar-time { background: #1D3557; height: 100%; }
+  .bar-cost { background: #8DB6CE; height: 100%; }
+
+  .bar-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .bar-breakdown {
+    font-size: 9.5px;
+    color: #AAAAAA;
+    font-weight: 400;
+  }
+
+  .bar-count {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #555550;
+    letter-spacing: 0.04em;
+  }
+
+  /* Maturity */
+  .maturity-col {
+    border-left: 1px solid #E8E8E2;
+    padding-left: 17px;
+    padding-top: 3px;
+  }
+
+  .maturity-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #C0C0B8;
+    margin-bottom: 6px;
+  }
+
+  .dots {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 7px;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+
+  .d-full  { background: #1D3557; }
+  .d-half  { background: #8DB6CE; }
+  .d-empty { background: #DDDDD8; }
+
+  .maturity-text {
+    font-size: 10px;
+    color: #888880;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* Source */
+  .source {
+    margin-top: 22px;
+    padding-top: 14px;
+    border-top: 1px solid #EEEEE8;
+    font-size: 9.5px;
+    color: #C0C0B8;
+    line-height: 1.6;
+  }
+
+  .source em { font-style: italic; }
+</style>
+</head>
+<body>
+<div class="figure">
+
+  <div class="fig-eyebrow">Figure 1</div>
+  <div class="fig-title">Reported GenAI efficiency gains remain concentrated before translation</div>
+  <div class="fig-subtitle">
+    Distribution of 153 coded literature segments by development phase and efficiency type &mdash;
+    systematic review of 100 peer-reviewed studies (2018&ndash;2025)
+  </div>
+  <div class="caveat-banner">
+    <span class="caveat-icon">&#9888;</span>
+    Segment counts reflect publication frequency, not measured or validated effect sizes
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="swatch sw-time"></div>Time efficiency (reported)</div>
+    <div class="legend-item"><div class="swatch sw-cost"></div>Cost reduction (reported)</div>
+  </div>
+
+  <div class="phase-rows">
+
+    <!-- Discovery: 114 time + 25 cost = 139. Bar width = 139/153 = 90.8% -->
+    <div class="phase-row">
+      <div class="phase-label">
+        <div class="phase-name">Discovery</div>
+        <div class="phase-tag">Phase I</div>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar-track">
+          <div class="bar-inner" style="width: 90.8%">
+            <!-- time fraction of bar = 114/139 = 82.0% -->
+            <div class="bar-time" style="flex: 114"></div>
+            <div class="bar-cost" style="flex: 25"></div>
+          </div>
+        </div>
+        <div class="bar-footer">
+          <div class="bar-breakdown">114 time &nbsp;&middot;&nbsp; 25 cost</div>
+          <div class="bar-count">n&nbsp;=&nbsp;139</div>
+        </div>
+      </div>
+      <div class="maturity-col">
+        <div class="maturity-label">Evidence maturity</div>
+        <div class="dots">
+          <div class="dot d-full"></div>
+          <div class="dot d-full"></div>
+          <div class="dot d-half"></div>
+          <div class="dot d-empty"></div>
+          <div class="dot d-empty"></div>
+        </div>
+        <div class="maturity-text">
+          Highest evidence density; predominantly in-silico / proof-of-concept; prospective biological validation limited
+        </div>
+      </div>
+    </div>
+
+    <!-- Preclinical: 2 time + 8 cost = 10. Bar width = 10/153 = 6.5% -->
+    <div class="phase-row">
+      <div class="phase-label">
+        <div class="phase-name">Preclinical</div>
+        <div class="phase-tag">Phase II</div>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar-track">
+          <div class="bar-inner" style="width: 6.5%">
+            <div class="bar-time" style="flex: 2"></div>
+            <div class="bar-cost" style="flex: 8"></div>
+          </div>
+        </div>
+        <div class="bar-footer">
+          <div class="bar-breakdown">2 time &nbsp;&middot;&nbsp; 8 cost</div>
+          <div class="bar-count">n&nbsp;=&nbsp;10</div>
+        </div>
+      </div>
+      <div class="maturity-col">
+        <div class="maturity-label">Evidence maturity</div>
+        <div class="dots">
+          <div class="dot d-full"></div>
+          <div class="dot d-empty"></div>
+          <div class="dot d-empty"></div>
+          <div class="dot d-empty"></div>
+          <div class="dot d-empty"></div>
+        </div>
+        <div class="maturity-text">
+          Sparse; largely model-based simulations; limited prospective validation or standardised methods
+        </div>
+      </div>
+    </div>
+
+    <!-- Clinical: 0 time + 4 cost = 4. Bar width = 4/153 = 2.6% -->
+    <div class="phase-row">
+      <div class="phase-label">
+        <div class="phase-name">Clinical</div>
+        <div class="phase-tag">Phase III</div>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar-track">
+          <div class="bar-inner" style="width: 2.6%">
+            <div class="bar-cost" style="flex: 4"></div>
+          </div>
+        </div>
+        <div class="bar-footer">
+          <div class="bar-breakdown">0 time &nbsp;&middot;&nbsp; 4 cost</div>
+          <div class="bar-count">n&nbsp;=&nbsp;4</div>
+        </div>
+      </div>
+      <div class="maturity-col">
+        <div class="maturity-label">Evidence maturity</div>
+        <div class="dots">
+          <div class="dot d-half"></div>
+          <div class="dot d-empty"></div>
+          <div class="dot d-empty"></div>
+          <div class="dot d-empty"></div>
+          <div class="dot d-empty"></div>
+        </div>
+        <div class="maturity-text">
+          Very sparse; no reported time savings; regulatory, recruitment and workflow constraints unresolved
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="source">
+    <em>Source: Adapted from Riemer &amp; Freund (2026), &ldquo;Generative artificial intelligence in pharmaceutical drug development,&rdquo;
+    Intelligent Pharmacy, doi:10.1016/j.ipha.2025.12.006.</em>
+    Bars are proportional to coded segment count per phase (n&nbsp;=&nbsp;153 total segments across 100 studies).
+    Segment counts were derived from qualitative content analysis (MAXQDA); they do not represent estimated effect sizes or commercial impact.
+  </div>
+
+</div>
+</body>
+</html>
