@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Writing | Etienne Cousin</title>
-  <meta name="description" content="Essays by Etienne Cousin on AI, biotech, drug discovery, clinical trials, and strategy." />
+  <meta name="description" content="Beyond the Model: a four-part series by Etienne Cousin on the hard biological and clinical infrastructure that will determine where value accrues in AI-bio." />
 
   <style>
     body {
@@ -38,48 +38,33 @@
     h1 {
       font-size: 44px;
       line-height: 1.1;
-      margin: 0 0 16px;
+      margin: 0 0 12px;
       letter-spacing: -0.03em;
     }
 
-    .intro {
+    .subtitle {
       font-size: 20px;
+      line-height: 1.45;
       color: #444;
-      margin: 0 0 48px;
+      font-style: italic;
+      margin: 0 0 40px;
       max-width: 700px;
     }
 
-    .series-label {
-      display: inline-block;
-      font-size: 13px;
-      color: #666;
-      background: #f3f3f3;
-      border-radius: 999px;
-      padding: 4px 10px;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+    hr {
+      border: none;
+      border-top: 1px solid #e5e5e5;
+      margin: 36px 0;
     }
 
     .series-intro {
-      margin-bottom: 40px;
-      padding: 24px;
-      border: 1px solid #e5e5e5;
-      border-radius: 16px;
-      background: #fafafa;
-    }
-
-    .series-intro h2 {
-      font-size: 26px;
-      line-height: 1.25;
-      margin: 0 0 10px;
-      letter-spacing: -0.02em;
+      margin-bottom: 44px;
     }
 
     .series-intro p {
-      font-size: 17px;
-      color: #444;
-      margin: 0;
+      font-size: 18px;
+      color: #222;
+      margin: 0 0 22px;
     }
 
     .essay-list {
@@ -91,6 +76,10 @@
     .essay {
       padding-bottom: 28px;
       border-bottom: 1px solid #e5e5e5;
+    }
+
+    .essay:last-child {
+      border-bottom: none;
     }
 
     .essay-meta {
@@ -122,6 +111,14 @@
       margin: 0 0 10px;
     }
 
+    .coming-soon h2 {
+      color: #555;
+    }
+
+    .coming-soon p {
+      color: #666;
+    }
+
     .tag {
       display: inline-block;
       font-size: 13px;
@@ -141,123 +138,12 @@
         font-size: 36px;
       }
 
-      .intro {
+      .subtitle {
         font-size: 18px;
       }
 
-      .series-intro {
-        padding: 20px;
-      }
-
-      .series-intro h2 {
-        font-size: 23px;
-      }
-
-      .essay h2 {
-        font-size: 22px;
-      }
-
-      .essay p,
       .series-intro p {
-        font-size: 16px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <main>
-    <a class="back-link" href="/">← Back home</a>
-
-    <h1>Writing</h1>
-
-    <p class="intro">
-      Essays on AI, biotech, drug discovery, clinical trials, strategy, and the operational bottlenecks shaping the next decade of life sciences.
-    </p>
-
-    <section class="series-intro">
-      <span class="series-label">Essay series</span>
-      <h2>Beyond the Model</h2>
-      <p>
-        A series on where AI in drug discovery actually breaks: not only at the model layer, but in the biological data, clinical throughput, and operating infrastructure required to turn predictions into medicines.
-      </p>
-    </section>
-
-    <section class="essay-list">
-
-      <article class="essay">
-        <p class="essay-meta">Part 2 of Beyond the Model</p>
-        <h2>
-          <a href="/writing/clinical-throughput-problem/">
-            The Clinical Throughput Problem: Why More Candidates Won't Mean More Drugs
-          </a>
-        </h2>
-        <p>
-          Even if AI generates better candidates, the clinical system cannot automatically absorb them. The bottleneck moves from candidate generation to first-in-human translation.
-        </p>
-        <span class="tag">AI x Bio</span>
-      </article>
-
-      <article class="essay">
-        <p class="essay-meta">Part 1 of Beyond the Model</p>
-        <h2>
-          <a href="/writing/predictive-validity/">
-            The Predictive Validity Problem: Why Better Biology Beats Bigger Models
-          </a>
-        </h2>
-        <p>
-          AI-bio's data problem is not mainly data volume; it is biological fidelity. A diagnosis of the upstream bottleneck on AI drug discovery, and where investors may be mispricing risk.
-        </p>
-        <span class="tag">AI x Bio</span>
-      </article>
-
-    </section>
-  </main>
-</body>
-</html>    .essay h2 {
-      font-size: 24px;
-      line-height: 1.25;
-      margin: 0 0 8px;
-      letter-spacing: -0.02em;
-    }
-
-    .essay h2 a {
-      color: #111;
-      text-decoration: none;
-    }
-
-    .essay h2 a:hover {
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-
-    .essay p {
-      font-size: 17px;
-      color: #444;
-      margin: 0 0 10px;
-    }
-
-    .tag {
-      display: inline-block;
-      font-size: 13px;
-      color: #666;
-      background: #f3f3f3;
-      border-radius: 999px;
-      padding: 4px 10px;
-      margin-top: 4px;
-    }
-
-    @media (max-width: 640px) {
-      main {
-        padding: 40px 20px 72px;
-      }
-
-      h1 {
-        font-size: 36px;
-      }
-
-      .intro {
-        font-size: 18px;
+        font-size: 17px;
       }
 
       .essay h2 {
@@ -275,36 +161,72 @@
   <main>
     <a class="back-link" href="/">← Back home</a>
 
-    <h1>Writing</h1>
+    <h1>Beyond the Model</h1>
 
-    <p class="intro">
-      Essays on AI, biotech, drug discovery, clinical trials, strategy, and the operational bottlenecks shaping the next decade of life sciences.
+    <p class="subtitle">
+      A four-part series on the hard biological and clinical infrastructure that will determine where value accrues in AI-bio.
     </p>
+
+    <hr />
+
+    <section class="series-intro">
+      <p>
+        The first wave of AI-bio capital has been priced around the model. I think that is increasingly the wrong place to look. The model matters, but the harder question is what it sits on top of: whether the biology is predictive, whether the clinic can absorb more candidates, and whether the company can learn quickly enough from human data.
+      </p>
+
+      <p>
+        AI inherits the biology, the experimental systems, the clinical infrastructure, and the regulatory frame it operates in. Capital flows have so far concentrated in the layer that looks like software; meanwhile, the adjacent layers that determine whether the software actually produces medicines have been under-priced. The companies that win may be the ones that build the infrastructure the model depends on. That is the primary thesis of this series.
+      </p>
+    </section>
 
     <section class="essay-list">
 
       <article class="essay">
+        <p class="essay-meta">Piece 1</p>
         <h2>
-          <a href="/writing/clinical-throughput-problem/">
-            The Clinical Throughput Problem: Why More Candidates Won't Mean More Drugs
+          <a href="/writing/predictive-validity/">
+            The Predictive Validity Problem
           </a>
         </h2>
         <p>
-          AI is about to flood the funnel with preclinically validated candidates. The clinic isn't ready, and the bottleneck just relocates downstream.
+          <strong>Why Better Biology Beats Bigger Models.</strong> AI-bio's data problem is not mainly data volume. It is biological fidelity. Models trained on weak experimental systems learn weak proxies for human biology. The investor question is what the predictive validity of the system generating the training data actually is.
         </p>
-        <span class="tag">AI x Bio</span>
+        <span class="tag">Published</span>
       </article>
 
       <article class="essay">
+        <p class="essay-meta">Piece 2</p>
         <h2>
-          <a href="/writing/predictive-validity/">
-            The Predictive Validity Problem: Why Better Models Beat More Data
+          <a href="/writing/clinical-throughput-problem/">
+            The Clinical Throughput Problem
           </a>
         </h2>
         <p>
-          The unsexy bottleneck in AI-bio is wet-lab fidelity, and capital is under-flowing here relative to model-building.
+          <strong>Why More Candidates Won't Mean More Drugs.</strong> Even if AI generates better candidates, the clinical system cannot automatically absorb them. The bottleneck moves from candidate generation to first-in-human translation. The investor question is how a company gets from candidate to human readout faster than the market.
         </p>
-        <span class="tag">AI x Bio</span>
+        <span class="tag">Published</span>
+      </article>
+
+      <article class="essay coming-soon">
+        <p class="essay-meta">Piece 3</p>
+        <h2>
+          The Iteration Problem
+        </h2>
+        <p>
+          AI rewards iteration, but the iteration loop is most valuable when it reaches patients. Examples include Recursion's underperformance and Hengrui's outlicensing pattern. The investor question is how many independent human learning loops a company can run per year.
+        </p>
+        <span class="tag">Coming soon</span>
+      </article>
+
+      <article class="essay coming-soon">
+        <p class="essay-meta">Piece 4</p>
+        <h2>
+          Europe's Biotech Asymmetry
+        </h2>
+        <p>
+          Europe should not imitate the US-China speed race. It should build compound assets around fidelity, regulatory niches, and clinical-data products. The investor question is whether a European company is exploiting a structural advantage, or just running a slower version of a US or Chinese comparable.
+        </p>
+        <span class="tag">Coming soon</span>
       </article>
 
     </section>
