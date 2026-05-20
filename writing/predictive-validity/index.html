@@ -183,14 +183,14 @@
     <h2>What predictive validity actually means</h2>
     <p>The term comes out of pharmacology and gets thrown around loosely. It is worth being precise about what it should mean for AI-bio.</p>
     <p>Predictive validity is the question of whether a preclinical experimental system actually forecasts how a drug, target, or biomarker will behave in humans. It is a measurable property. You can correlate model output to clinical outcomes across drugs that have already been tested in humans, you can publish R-squared values, and you can benchmark organoid responses against the actual patients those organoids were derived from. The fact that we mostly do not do this is the point, not the counter-argument.</p>
-    <p>Industry estimates put the failure rate from Phase 1 to drug approval at around 90%, with most attrition concentrated in Phase 2 and driven by efficacy failures. The story often goes something like this: the model said the molecule worked, the animal data was compelling, the biomarker moved, but then humans did not respond. By definition this is a predictive validity failure. The preclinical system gave a green light that turned out to be wrong, and we discovered it after spending years and many millions of dollars, without a single new medicine reaching patients.</p>
+    <p>Industry estimates put the failure rate from Phase 1 to drug approval at around 90% [2], with most attrition concentrated in Phase 2 and driven by efficacy failures [3]. The story often goes something like this: the model said the molecule worked, the animal data was compelling, the biomarker moved, but then humans did not respond. By definition this is a predictive validity failure. The preclinical system gave a green light that turned out to be wrong, and we discovered it after spending years and many millions of dollars, without a single new medicine reaching patients.</p>
     <p>The conventional response is &quot;drug discovery is hard, biology is complex, attrition is the price of doing business.&quot; That is true and is also a way of avoiding the question. The industry has a measurement failure. We use prediction tools whose calibration we do not measure, and we are surprised when the predictions miss.</p>
     <p>A model trained on cell line data predicts cell line behaviour, not patient behaviour. The leap from one to the other is the entire translational problem.</p>
     <h2>The emerging stack</h2>
     <p>The technologies that generate higher-fidelity preclinical data are not new or exotic, but they are underused, under-capitalised relative to model-building, and rarely benchmarked against clinical outcomes with any rigour. These technologies can be grouped into four buckets.</p>
     <ol>
       <li><strong>Patient-derived tissue systems.</strong> Organoids, patient-derived xenografts, and ex vivo tumour slice cultures preserve patient biology directly.</li>
-      <li><strong>Engineered human systems.</strong> iPSC-derived disease models and microphysiological systems (organ-on-chip) model human physiology in ways animal models cannot. The FDA Modernization Act 2.0 in 2022 opened regulatory pathways that do not require animal testing, the first material policy shift in this space in decades.</li>
+      <li><strong>Engineered human systems.</strong> iPSC-derived disease models and microphysiological systems (organ-on-chip) model human physiology in ways animal models cannot. The FDA Modernization Act 2.0 in 2022 opened regulatory pathways that do not require animal testing, the first material policy shift in this space in decades [4].</li>
       <li><strong>Humanised in vivo systems.</strong> Humanised mouse models reconstitute human immune systems in immunodeficient mice, which matters in immuno-oncology and infectious disease where the immune response is the mechanism of action.</li>
       <li><strong>Closing the loop.</strong> Multi-omics on existing patient samples and real-world evidence linkage to clinical outcomes turn one-shot experiments into a feedback system. If you do not measure whether your model predicts the clinic, you do not know whether your model predicts the clinic.</li>
 </ol>
@@ -199,12 +199,13 @@
     <p>I work at a precision oncology company that creates patient-derived microtissues to support preclinical development and translational research. The argument I am making applies to our work too, and I have seen it from both sides.</p>
     <p>The unit economics of the data layer are brutal compared to model-building. A foundation model can train on existing public data and ship a benchmark improvement in months. A wet-lab system that generates higher-fidelity training data needs sample procurement, tissue handling protocols, growth optimisation, characterisation, and benchmarking before it produces a single useful data point. Timelines are years, not quarters, and capital requirements are much heavier. The defensibility story is harder to tell to a tech-fluent investor trained to look for software margins. That is why I believe the data layer is under-capitalised. It is not because the value is not there, it is because the value does not look like the value tech investors know how to underwrite.</p>
     <h2>The misallocation thesis</h2>
-    <p>The market is recognising that AI can improve drug discovery, but it is still misreading where the scarce asset sits. The category leaders, even where their clinical performance has been uneven, have largely converged on the same strategic direction: the asset is not the model in isolation, but the learning system around it. Insilico combines its computational platform with automated experimental feedback loops. NOETIK is building multimodal human tumour datasets from curated clinical specimens. The common thread is that the durable asset is the ability to generate, structure, and learn from proprietary biological data at scale.</p>
-    <p>Capital and attention still gravitate to the part of AI-bio that looks most like software: the model, the benchmark, the demo, the generated molecule. The harder layer to build is the one underneath it: the experimental and clinical infrastructure that determines whether the prediction is actually true. It is slower, more capital-intensive, and less elegant to pitch. But if predictive validity is the bottleneck, it is also where the marginal dollar should matter most.</p>
+    <p>The market is recognising that AI can improve drug discovery, but it is still misreading where the scarce asset sits. The category leaders, in a field where clinical proof remains early and uneven, have largely converged on the same strategic direction: the asset is not the model in isolation, but the learning system around it. </p>
+    <p>Insilico provides a clear example: rentosertib has now produced Phase IIa human data [5] and the company has extended the programme into an inhaled formulation, while its business model has moved beyond software licensing into partnered and internal drug assets, including collaborations with Lilly and Sanofi [6]. NOETIK shows the same shift from the data side: its differentiation is not just a cancer foundation model, but a proprietary human tumour data architecture that aligns H&E, spatial protein, spatial transcriptomic and DNA data from curated clinical specimens, then trains self-supervised models on that substrate [7]. GSK’s 2026 licensing deal for NOETIK’s oncology foundation models is therefore notable, less as another AI partnership than as evidence that pharma is starting to pay for the biological data layer underneath the model [8]. </p>
+    <p>That is the point the market still struggles to price. Capital and attention gravitate to the part of AI-bio that looks most like software: the model, the benchmark, the demo, the generated molecule. The harder layer to build is the one underneath it: the experimental and clinical infrastructure that determines whether the prediction is actually true. It is slower, more capital-intensive, and less elegant to pitch. But if predictive validity is the bottleneck, it is also where the marginal dollar should matter most. </p>
     <h2>What this means for the industry and for investors</h2>
     <p>Three implications.</p>
     <p>First, the diligence question on every AI-bio deal should evolve. &quot;What is your training data and how is its predictive validity established&quot; should be the opening. The companies that have a good answer are the ones worth paying attention to.</p>
-    <p>Second, the under-capitalised opportunity is the data layer. Companies generating proprietary high-fidelity data, particularly those that close the loop to clinical outcomes, are systematically undervalued because the unit economics look unfamiliar to investors trained on software comparables. A platform that could credibly improve Phase 2 success rates by even a few percentage points would be a very valuable infrastructure asset in biopharma. The underwriting challenge is whether that platform can generate convincing clinical-concordance evidence, at sufficient scale, inside a venture timeframe. Further, whether it can capture the value of the learning loop rather and create a compelling commercial model, rather than giving it away through CRO-style service projects.</p>
+    <p>Second, the under-capitalised opportunity is the data layer. Companies generating proprietary high-fidelity data, particularly those that close the loop to clinical outcomes, are systematically undervalued because the unit economics look unfamiliar to investors trained on software comparables. A platform that could credibly improve Phase 2 success rates by even a few percentage points would be a very valuable infrastructure asset in biopharma. The underwriting challenge is whether that platform can generate convincing clinical-concordance evidence, at sufficient scale, inside a venture timeframe. Further, whether it can capture the value of the learning loop and create a compelling commercial model, rather than giving it away through CRO-style service projects.</p>
     <p>Third, model architectures will commoditise faster than data does. Open-source biomolecular foundation models (e.g. Boltz, OpenFold) are already narrowing the gap with proprietary systems in areas such as structure prediction and binding-affinity modelling. That does not make AI-bio platforms worthless; it changes what has to be proprietary. The durable advantage is less likely to be the model architecture alone, and more likely to be the data, workflow integration, experimental feedback loop, and clinical-concordance evidence wrapped around it.</p>
     <h2>What I would look for</h2>
     <p>In a company pitching at this layer of the stack:</p>
@@ -218,10 +219,50 @@
 </ol>
     <h2>The series</h2>
     <p>This piece is the first of four. The second turns to the downstream half of the same problem. Even if you fix predictive validity, the clinical system cannot absorb more candidates without widening the throat of the funnel. The third argues that the layer at which AI-bio iteration happens (the clinic, not the bench) is the deciding strategic variable. The fourth applies all of it to Europe, where the right bet looks very different from a slower copy of Boston or Beijing.</p>
+    x
     <h2>Sources</h2>
-    <ol>
-      <li><a href="https://www.sciencedirect.com/science/article/pii/S2949866X25000784" target="_blank" rel="noopener noreferrer">https://www.sciencedirect.com/science/article/pii/S2949866X25000784</a></li>
-</ol>
+  <ol>
+    <li>
+      <a href="https://www.sciencedirect.com/science/article/pii/S2949866X25000784" target="_blank" rel="noopener noreferrer">
+        Generative artificial intelligence in drug discovery and development: a systematic review
+      </a>
+    </li>
+    <li>
+      <a href="https://go.bio.org/rs/490-EHZ-999/images/ClinicalDevelopmentSuccessRates2011_2020.pdf" target="_blank" rel="noopener noreferrer">
+        BIO, Informa Pharma Intelligence and QLS Advisors — Clinical Development Success Rates 2011–2020
+      </a>
+    </li>
+    <li>
+      <a href="https://pharmatimes.com/news/phase_ii_failures_on_the_rise_cmr_analysis_finds_981071/" target="_blank" rel="noopener noreferrer">
+        PharmaTimes — Phase II failures on the rise, CMR analysis finds
+      </a>
+    </li>
+    <li>
+      <a href="https://pubmed.ncbi.nlm.nih.gov/36762462/" target="_blank" rel="noopener noreferrer">
+        FDA Modernization Act 2.0 / non-animal testing policy context
+      </a>
+    </li>
+    <li>
+      <a href="https://pubmed.ncbi.nlm.nih.gov/40461817/" target="_blank" rel="noopener noreferrer">
+        Recent review on AI, translational validity, and drug discovery productivity
+      </a>
+    </li>
+    <li>
+      <a href="https://www.reuters.com/business/healthcare-pharmaceuticals/eli-lilly-extends-partnership-with-insilico-medicine-ai-powered-drug-discovery-2026-03-30/" target="_blank" rel="noopener noreferrer">
+        Reuters — Eli Lilly extends partnership with Insilico Medicine
+      </a>
+    </li>
+    <li>
+      <a href="https://www.noetik.ai/human-data" target="_blank" rel="noopener noreferrer">
+        NOETIK — Human data platform
+      </a>
+    </li>
+    <li>
+      <a href="https://www.businesswire.com/news/home/20260108468293/en/GSK-Licenses-Noetiks-AI-Foundation-Models-in-Anchor-Partnership-to-Transform-Cancer-Therapeutic-Research-and-Development" target="_blank" rel="noopener noreferrer">
+        Business Wire — GSK licenses NOETIK's AI foundation models
+      </a>
+    </li>
+  </ol>
   </main>
 </body>
 </html>
