@@ -46,7 +46,40 @@
       font-size: 20px;
       color: #444;
       margin: 0 0 48px;
-      max-width: 680px;
+      max-width: 700px;
+    }
+
+    .series-label {
+      display: inline-block;
+      font-size: 13px;
+      color: #666;
+      background: #f3f3f3;
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .series-intro {
+      margin-bottom: 40px;
+      padding: 24px;
+      border: 1px solid #e5e5e5;
+      border-radius: 16px;
+      background: #fafafa;
+    }
+
+    .series-intro h2 {
+      font-size: 26px;
+      line-height: 1.25;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .series-intro p {
+      font-size: 17px;
+      color: #444;
+      margin: 0;
     }
 
     .essay-list {
@@ -60,7 +93,128 @@
       border-bottom: 1px solid #e5e5e5;
     }
 
+    .essay-meta {
+      font-size: 14px;
+      color: #666;
+      margin: 0 0 8px;
+    }
+
     .essay h2 {
+      font-size: 24px;
+      line-height: 1.25;
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .essay h2 a {
+      color: #111;
+      text-decoration: none;
+    }
+
+    .essay h2 a:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .essay p {
+      font-size: 17px;
+      color: #444;
+      margin: 0 0 10px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 13px;
+      color: #666;
+      background: #f3f3f3;
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding: 40px 20px 72px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .intro {
+        font-size: 18px;
+      }
+
+      .series-intro {
+        padding: 20px;
+      }
+
+      .series-intro h2 {
+        font-size: 23px;
+      }
+
+      .essay h2 {
+        font-size: 22px;
+      }
+
+      .essay p,
+      .series-intro p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <a class="back-link" href="/">← Back home</a>
+
+    <h1>Writing</h1>
+
+    <p class="intro">
+      Essays on AI, biotech, drug discovery, clinical trials, strategy, and the operational bottlenecks shaping the next decade of life sciences.
+    </p>
+
+    <section class="series-intro">
+      <span class="series-label">Essay series</span>
+      <h2>Beyond the Model</h2>
+      <p>
+        A series on where AI in drug discovery actually breaks: not only at the model layer, but in the biological data, clinical throughput, and operating infrastructure required to turn predictions into medicines.
+      </p>
+    </section>
+
+    <section class="essay-list">
+
+      <article class="essay">
+        <p class="essay-meta">Part 2 of Beyond the Model</p>
+        <h2>
+          <a href="/writing/clinical-throughput-problem/">
+            The Clinical Throughput Problem: Why More Candidates Won't Mean More Drugs
+          </a>
+        </h2>
+        <p>
+          Even if AI generates better candidates, the clinical system cannot automatically absorb them. The bottleneck moves from candidate generation to first-in-human translation.
+        </p>
+        <span class="tag">AI x Bio</span>
+      </article>
+
+      <article class="essay">
+        <p class="essay-meta">Part 1 of Beyond the Model</p>
+        <h2>
+          <a href="/writing/predictive-validity/">
+            The Predictive Validity Problem: Why Better Biology Beats Bigger Models
+          </a>
+        </h2>
+        <p>
+          AI-bio's data problem is not mainly data volume; it is biological fidelity. A diagnosis of the upstream bottleneck on AI drug discovery, and where investors may be mispricing risk.
+        </p>
+        <span class="tag">AI x Bio</span>
+      </article>
+
+    </section>
+  </main>
+</body>
+</html>    .essay h2 {
       font-size: 24px;
       line-height: 1.25;
       margin: 0 0 8px;
